@@ -1,34 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { ThemeProvider } from '@/contexts/ThemeContext'
+import { ThemeSwitcher } from '@/components/ThemeSwitcher'
+import { CounterApp } from '@/components/CounterApp'
+import { NumberList } from '@/components/NumberList'
+import { InputFocus } from '@/components/InputFocus'
+import { TodoList } from '@/components/TodoList'
+import { MemoExample } from '@/components/MemoExample'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <ThemeProvider>
+      <div className="app">
+        <ThemeSwitcher />
+        
+        <section>
+          <h2>useCallback Example</h2>
+          <CounterApp />
+        </section>
+        
+        <section>
+          <h2>useMemo Example</h2>
+          <NumberList />
+        </section>
+        
+        <section>
+          <h2>useRef Example</h2>
+          <InputFocus />
+        </section>
+        
+        <section>
+          <h2>useReducer Example (Todo List)</h2>
+          <TodoList />
+        </section>
+        
+        <section>
+          <h2>React.memo Example</h2>
+          <MemoExample />
+        </section>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </ThemeProvider>
   )
 }
 
